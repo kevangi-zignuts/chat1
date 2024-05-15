@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegistrationController;
 
@@ -15,9 +16,5 @@ Route::get('/register-form', [RegistrationController::class, 'form'])->name('aut
 Route::post('/register', [RegistrationController::class, 'register'])->name('auth.register');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth:sanctum')->name('dashboard');
-
-
-// Route::get('/dashboard', [MessageController::class, 'index'])->middleware('auth:sanctum')->name('dashboard');
+Route::get('/dashboard', [MessageController::class, 'dashboard'])->middleware('auth:sanctum')->name('dashboard');
+Route::get('/chat/{id}', [MessageController::class, 'chat'])->middleware('auth:sanctum')->name('chat');

@@ -18,3 +18,4 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 Route::get('/dashboard', [MessageController::class, 'dashboard'])->middleware('auth:sanctum')->name('dashboard');
 Route::get('/chat/{id}', [MessageController::class, 'chat'])->middleware('auth:sanctum')->name('chat');
+Route::post('/message', [MessageController::class, 'sendMessage'])->middleware('auth:sanctum')->name('send-message');
